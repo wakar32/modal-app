@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Modal from "./components/modal";
+import "./App.css";
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <div style={styles.buttonContainer}>
+        <button style={styles.openButton} onClick={() => setIsOpen(true)}>
+          Open Model
+        </button>
+        <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}></Modal>
+      </div>
+    </React.Fragment>
   );
 }
-
+const styles = {
+  buttonContainer: {
+    height: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  openButton: {
+    background: "blue",
+  },
+};
 export default App;
